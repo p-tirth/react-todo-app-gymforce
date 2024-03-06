@@ -2,15 +2,18 @@ import * as React from "react";
 import { Checkbox } from "../checkbox";
 import "./todo-list.scss";
 
-export const TodoList = (props) => {
-  const { todos, setTodos } = props;
-
+export const TodoList = ({ todos, setTodos }) => {
   const handleDelete = (id) => {
-    // Function to delete task
+    setTodos(todos.filter(todo => todo.id !== id));
   };
 
   const toggleCheck = (id) => {
-    // Function to toggle task
+    setTodos(todos.map(todo => {
+      if (todo.id === id) {
+        return { ...todo, checked: !todo.checked };
+      }
+      return todo;
+    }));
   };
 
   const handleKeyUp = (e, id) => {

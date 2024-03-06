@@ -1,17 +1,14 @@
 import * as React from "react";
 import "./todo-results.scss";
 
-export const TodoResults = (props) => {
-  const { todos } = props;
-
+export const TodoResults = ({ todos }) => {
   const calculateChecked = () => {
-    // Function to calculate completed tasks
+    return todos.filter(todo => todo.checked).length;
   };
 
   return (
     <div className="todo-results">
-      Done:
-      {calculateChecked()}
+      Done: {calculateChecked()}
     </div>
   );
 };

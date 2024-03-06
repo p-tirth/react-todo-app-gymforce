@@ -1,12 +1,19 @@
 import * as React from "react";
 import "./todo-form.scss";
 
-export const TodoForm = (props) => {
-  const { todos, setTodos } = props;
+export const TodoForm = ({ setTodos }) => {
   const [task, setTask] = React.useState("");
 
   const handleAddTodo = () => {
-    // Function to add todo
+    if (task.trim() !== "") {
+      const newTodo = {
+        id: Date.now(),
+        label: task,
+        checked: false
+      };
+      setTodos(prevTodos => [...prevTodos, newTodo]);
+      setTask("");
+    }
   };
 
   const handleKeyUp = (e) => {
